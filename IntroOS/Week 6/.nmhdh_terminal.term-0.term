@@ -1,9 +1,0 @@
-]0;~/Week 6[01;34m~/Week 6[00m$ 
-[K]0;~/Week 6[01;34m~/Week 6[00m$ make clean
-rm -rf *.o
-rm -rf fcfs
-rm -rf sjf
-rm -rf rr
-rm -rf priority
-rm -rf priority_rr
-]0;~/Week 6[01;34m~/Week 6[00m$ 
