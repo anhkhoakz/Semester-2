@@ -25,12 +25,16 @@ int REQUESTS;
 int ran_array[MAX];
 int test_array[MAX];
 int head_start;
-int* sort_array() {
+int *sort_array()
+{
   int temp = 0, i = 0, j = 0;
 
-  for (i = 0; i < REQUESTS; ++i) {
-    for (j = i + 1; j < REQUESTS; ++j) {
-      if (ran_array[i] > ran_array[j]) {
+  for (i = 0; i < REQUESTS; ++i)
+  {
+    for (j = i + 1; j < REQUESTS; ++j)
+    {
+      if (ran_array[i] > ran_array[j])
+      {
         temp = ran_array[i];
         ran_array[i] = ran_array[j];
         ran_array[j] = temp;
@@ -45,10 +49,12 @@ int* sort_array() {
 index and continually adds the headmovement from the starting index in
 order recieved. If at end of array, start from index zero and continually
 add until starting index */
-int fcfs(int* ran_array) {
+int fcfs(int *ran_array)
+{
   int i = 0, head_movement = 0;
 
-  for (i = 0; i < REQUESTS; i++) {
+  for (i = 0; i < REQUESTS; i++)
+  {
     head_movement += abs(ran_array[i] - head_start);
     head_start = ran_array[i];
     printf("%5d", ran_array[i]);
@@ -63,7 +69,8 @@ the head, then this system repeats.
 First we sort the array. Then We have counters for above and below start
 index that we decrement if used. Once these equal to REQUEST-2 (excluding
 start index) we exit. */
-int sstf(int* ran_array) {
+int sstf(int *ran_array)
+{
   ran_array = sort_array();
 
   int small_i = start - 1, large_i = start + 1;
@@ -71,16 +78,19 @@ int sstf(int* ran_array) {
   int head_movement = 0, total = REQUESTS - 2, new_head = start,
       head_value = ran_array[start];
 
-  while (total >= 0) {
+  while (total >= 0)
+  {
     small_diff = abs(ran_array[new_head] - ran_array[small_i]);
     large_diff = abs(ran_array[large_i] - ran_array[new_head]);
 
-    if (small_diff < large_diff) {
+    if (small_diff < large_diff)
+    {
       head_movement += small_diff;
       new_head = small_i;
       small_i--;
-
-    } else {
+    }
+    else
+    {
       head_movement += large_diff;
       new_head = large_i;
       large_i++;
@@ -96,11 +106,13 @@ int sstf(int* ran_array) {
 and continually goes down to zero (if included in randome array or not). Then
 starts at one higher than start and continually goes up to highest value (not
 5000) */
-int scan(int* ranArray) {
+int scan(int *ranArray)
+{
   int i = 0, curr_val = 0, sav_val = ran_array[start], difference = 0;
   int head_movement = 0, curr_i = 0;
 
-  for (i = start - 1; i >= 0; --i) {
+  for (i = start - 1; i >= 0; --i)
+  {
     curr_val = ran_array[i];
     difference = abs(sav_val - curr_val);
     head_movement += difference;
@@ -111,7 +123,8 @@ int scan(int* ranArray) {
   head_movement += sav_val;
   sav_val = 0;
 
-  for (i = 0; i < REQUESTS; i++) {
+  for (i = 0; i < REQUESTS; i++)
+  {
     curr_val = ran_array[i];
     difference = abs(curr_val - sav_val);
     head_movement += difference;
@@ -124,11 +137,13 @@ int scan(int* ranArray) {
 /* Circular Scan (C-SCAN) - start at start index, increase to upper boundary
 (even if no value at boundary), save boundary value, go to start boundary
 (zero value) increase till last value before start value */
-int cscan(int* ranArray) {
+int cscan(int *ranArray)
+{
   int i = 0, curr_val = 0, sav_val = ran_array[start], difference = 0;
   int head_movement = 0, curr_i = 0, upper_bound = 4999;
 
-  for (i = start + 1; i < REQUESTS; i++) {
+  for (i = start + 1; i < REQUESTS; i++)
+  {
     curr_val = ran_array[i];
     difference = abs(sav_val - curr_val);
     head_movement += difference;
@@ -140,7 +155,8 @@ int cscan(int* ranArray) {
   sav_val = 0;
   head_movement += 4999;
 
-  for (i = 0; i < start; i++) {
+  for (i = 0; i < start; i++)
+  {
     curr_val = ran_array[i];
     difference = abs(curr_val - sav_val);
     head_movement += difference;
@@ -152,18 +168,21 @@ int cscan(int* ranArray) {
 
 /* Look - start from value above start, increase to highest value.
 Then goes to value below start value and decreases until smallest value */
-int look(int* ranArray) {
+int look(int *ranArray)
+{
   int i = 0, curr_val = 0, sav_val = ran_array[start], difference = 0;
   int head_movement = 0, curr_i = 0;
 
-  for (i = start + 1; i < REQUESTS; i++) {
+  for (i = start + 1; i < REQUESTS; i++)
+  {
     curr_val = ran_array[i];
     difference = abs(sav_val - curr_val);
     head_movement += difference;
     sav_val = curr_val;
   }
 
-  for (i = start - 1; i >= 0; --i) {
+  for (i = start - 1; i >= 0; --i)
+  {
     curr_val = ran_array[i];
     difference = abs(curr_val - sav_val);
     head_movement += difference;
@@ -175,18 +194,21 @@ int look(int* ranArray) {
 
 /* C-Look - Starts from value after start value, goes to highest value,
 then goes to smallest value and increases until value before start value */
-int clook(int* ranArray) {
+int clook(int *ranArray)
+{
   int i = 0, curr_val = 0, sav_val = ran_array[start], difference = 0;
   int head_movement = 0, curr_i = 0;
 
-  for (i = start + 1; i < REQUESTS; i++) {
+  for (i = start + 1; i < REQUESTS; i++)
+  {
     curr_val = ran_array[i];
     difference = abs(sav_val - curr_val);
     head_movement += difference;
     sav_val = curr_val;
   }
 
-  for (i = 0; i < start; i++) {
+  for (i = 0; i < start; i++)
+  {
     curr_val = ran_array[i];
     difference = abs(curr_val - sav_val);
     head_movement += difference;
@@ -196,22 +218,28 @@ int clook(int* ranArray) {
   return head_movement;
 }
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[])
+{
   REQUESTS = atoi(argv[1]);
-  if (REQUESTS > 0) {
+  if (REQUESTS > 0)
+  {
     // Use current time as seed for random generator
     srand(time(0));
-    for (int i = 0; i < REQUESTS; i++) ran_array[i] = rand() % CYLINDERS;
-
-  } else {
-    FILE* fp;
+    for (int i = 0; i < REQUESTS; i++)
+      ran_array[i] = rand() % CYLINDERS;
+  }
+  else
+  {
+    FILE *fp;
     REQUESTS = 0;
 
-    if ((fp = fopen("data.txt", "r")) == NULL) {
+    if ((fp = fopen("data.txt", "r")) == NULL)
+    {
       printf("\nCannot open file.\n");
       return 0;
     }
-    while (!feof(fp)) {
+    while (!feof(fp))
+    {
       fscanf(fp, "%d", &ran_array[REQUESTS]);
       REQUESTS++;
     }

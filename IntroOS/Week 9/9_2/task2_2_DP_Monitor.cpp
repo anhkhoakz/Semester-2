@@ -22,7 +22,8 @@ using namespace std;
 int phil[N];
 int times = 200;
 
-class monitor {
+class monitor
+{
   // state of the philosopher
   int state[N];
 
@@ -32,12 +33,14 @@ class monitor {
   // mutex variable for synchronization
   pthread_mutex_t condLock;
 
- public:
+public:
   // Test for the desired condtion
   // i.e. Left and Right philosopher are not reading
-  void test(int phnum) {
+  void test(int phnum)
+  {
     if (state[(phnum + 1) % 5] != EATING and
-        state[(phnum + 4) % 5] != EATING and state[phnum] == HUNGRY) {
+        state[(phnum + 4) % 5] != EATING and state[phnum] == HUNGRY)
+    {
       cout << "Philospher " << phnum << " takes fork " << phnum << " and "
            << (phnum + 1) % 5 << endl;
 
@@ -48,7 +51,8 @@ class monitor {
   }
 
   // Take Fork function
-  void take_fork(int phnum) {
+  void take_fork(int phnum)
+  {
     pthread_mutex_lock(&condLock);
 
     // Indicates it is hungry
@@ -59,7 +63,8 @@ class monitor {
     test(phnum);
 
     // If unable to eat.. wait for the signal
-    if (state[phnum] != EATING) {
+    if (state[phnum] != EATING)
+    {
       pthread_cond_wait(&phcond[phnum], &condLock);
     }
     cout << "Philospher " << phnum << " is Eating" << endl;
@@ -68,7 +73,8 @@ class monitor {
   }
 
   // Put Fork function
-  void put_fork(int phnum) {
+  void put_fork(int phnum)
+  {
     pthread_mutex_lock(&condLock);
 
     // Indicates that I am thinking
@@ -81,12 +87,15 @@ class monitor {
   }
 
   // constructor
-  monitor() {
-    for (int i = 0; i < N; i++) {
+  monitor()
+  {
+    for (int i = 0; i < N; i++)
+    {
       state[i] = THINKING;
     }
 
-    for (int i = 0; i < N; i++) {
+    for (int i = 0; i < N; i++)
+    {
       pthread_cond_init(&phcond[i], NULL);
     }
 
@@ -94,8 +103,10 @@ class monitor {
   }
 
   // destructor
-  ~monitor() {
-    for (int i = 0; i < N; i++) {
+  ~monitor()
+  {
+    for (int i = 0; i < N; i++)
+    {
       pthread_cond_destroy(&phcond[i]);
     }
 
@@ -106,10 +117,12 @@ class monitor {
 // Global Object of the monitor
 phil_object;
 
-void* philospher(void* arg) {
+void *philospher(void *arg)
+{
   int c = 0;
-  while (c < times) {
-    int i = *(int*)arg;
+  while (c < times)
+  {
+    int i = *(int *)arg;
     cout << "Philospher " << i << " is thinking..." << endl;
     sleep(1);
     phil_object.take_fork(i);
@@ -120,7 +133,8 @@ void* philospher(void* arg) {
   return 0;
 }
 
-int main() {
+int main()
+{
   // Declaration...
   pthread_t thread_id[N];
   pthread_attr_t attr;
@@ -129,17 +143,20 @@ int main() {
   pthread_attr_init(&attr);
   pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
 
-  for (int i = 0; i < N; i++) {
+  for (int i = 0; i < N; i++)
+  {
     phil[i] = i;
   }
 
   // Creating...
-  for (int i = 0; i < N; i++) {
+  for (int i = 0; i < N; i++)
+  {
     pthread_create(&thread_id[i], &attr, philospher, &phil[i]);
   }
 
   // Joining....
-  for (int i = 0; i < N; i++) {
+  for (int i = 0; i < N; i++)
+  {
     pthread_join(thread_id[i], NULL);
   }
 

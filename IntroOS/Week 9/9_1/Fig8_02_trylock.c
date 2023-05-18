@@ -14,9 +14,10 @@
 pthread_mutex_t first_mutex;
 pthread_mutex_t second_mutex;
 
-void* do_work_one(void* param); /* threads call this function */
-void* do_work_two(void* param); /* threads call this function */
-int main(int argc, char* argv[]) {
+void *do_work_one(void *param); /* threads call this function */
+void *do_work_two(void *param); /* threads call this function */
+int main(int argc, char *argv[])
+{
   pthread_mutex_init(&first_mutex, NULL);
   pthread_mutex_init(&second_mutex, NULL);
   pthread_t tid[2]; /* the thread identifier */
@@ -30,37 +31,45 @@ int main(int argc, char* argv[]) {
 }
 
 /* thread_one runs in this function */
-void* do_work_one(void* param) {
+void *do_work_one(void *param)
+{
   int done = 0;
-  while (!done) {
+  while (!done)
+  {
     pthread_mutex_lock(&first_mutex);
     sleep(1);
-    if (pthread_mutex_trylock(&second_mutex)) {
+    if (pthread_mutex_trylock(&second_mutex))
+    {
       // Do some work
       printf("\nThread 1 reach this point.");
 
       pthread_mutex_unlock(&second_mutex);
       pthread_mutex_unlock(&first_mutex);
       done = 1;
-    } else
+    }
+    else
 
       pthread_mutex_unlock(&first_mutex);
   }
   pthread_exit(0);
 }
 /* threadtwo runs in this function */
-void* do_work_two(void* param) {
+void *do_work_two(void *param)
+{
   int done = 0;
-  while (!done) {
+  while (!done)
+  {
     pthread_mutex_lock(&second_mutex);
     sleep(1);
-    if (pthread_mutex_trylock(&first_mutex)) {
+    if (pthread_mutex_trylock(&first_mutex))
+    {
       // Do some work
       printf("\nThread 2 reach this point.");
       pthread_mutex_unlock(&first_mutex);
       pthread_mutex_unlock(&second_mutex);
       done = 1;
-    } else
+    }
+    else
 
       pthread_mutex_unlock(&second_mutex);
   }

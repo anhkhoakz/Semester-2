@@ -1,6 +1,7 @@
 import random
 import math
 import threading
+
 counter = 0
 seed = 1000000
 
@@ -11,7 +12,7 @@ def thread_task(lock):
         x = random.random()
         y = random.random()
         dist = math.sqrt(x * x + y * y)
-        if (dist < 1.0):
+        if dist < 1.0:
             lock.acquire()
             counter = counter + 1
             lock.release()
@@ -21,8 +22,8 @@ def main():
     # creating a lock
     lock = threading.Lock()
 
-    t1 = threading.Thread(target=thread_task, args=(lock, ))
-    t2 = threading.Thread(target=thread_task, args=(lock, ))
+    t1 = threading.Thread(target=thread_task, args=(lock,))
+    t2 = threading.Thread(target=thread_task, args=(lock,))
 
     # start threads
     t1.start()

@@ -21,7 +21,7 @@
 
 #include <stdbool.h>
 
-/* gettimeofday */ #include <sys / time.h>
+/* gettimeofday */ #include<sys / time.h>
 // maximum number of threads
 #define BUFFER_SIZE 10
 #define MAX_THREAD 2

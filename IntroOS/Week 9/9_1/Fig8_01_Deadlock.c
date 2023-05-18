@@ -14,9 +14,10 @@
 pthread_mutex_t first_mutex;
 pthread_mutex_t second_mutex;
 
-void* do_work_one(void* param); /* threads call this function */
-void* do_work_two(void* param); /* threads call this function */
-int main(int argc, char* argv[]) {
+void *do_work_one(void *param); /* threads call this function */
+void *do_work_two(void *param); /* threads call this function */
+int main(int argc, char *argv[])
+{
   pthread_mutex_init(&first_mutex, NULL);
   pthread_mutex_init(&second_mutex, NULL);
   pthread_t tid[2]; /* the thread identifier */
@@ -30,7 +31,8 @@ int main(int argc, char* argv[]) {
 }
 
 /* thread_one runs in this function */
-void* do_work_one(void* param) {
+void *do_work_one(void *param)
+{
   pthread_mutex_lock(&first_mutex);
   sleep(1);
   pthread_mutex_lock(&second_mutex);
@@ -42,7 +44,8 @@ void* do_work_one(void* param) {
   pthread_exit(0);
 }
 /* threadtwo runs in this function */
-void* do_work_two(void* param) {
+void *do_work_two(void *param)
+{
   pthread_mutex_lock(&second_mutex);
   sleep(1);
   pthread_mutex_lock(&first_mutex);

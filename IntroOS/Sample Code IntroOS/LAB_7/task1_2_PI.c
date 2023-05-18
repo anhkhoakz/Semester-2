@@ -7,9 +7,9 @@
 
 #include <stdlib.h>
 
-/* gettimeofday */ #include <sys / time.h>
+/* gettimeofday */ #include<sys / time.h>
 
-/* clock */ #include <time.h>
+/* clock */ #include<time.h>
 
 #include <sys/sysinfo.h>
 
