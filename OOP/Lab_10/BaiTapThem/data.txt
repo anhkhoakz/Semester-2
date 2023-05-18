@@ -1,0 +1,11 @@
+1. Thoi Trang;    2. The Thao;      3. Sandal
+
+1@A201@Mua Xuan@Lua@36@Do@2022@Mui nhon@2.4
+1@A202@Mua He@Nhung@37@Xanh@2023@Mui vuong@2.7
+1@A203@Mua Xuan@Cam@38@Cam@2021@Mui dep@1.7
+
+2@S405@Van Dong Manh@Vai@40@Den@2022@Running@2.3 
+2@S405@Van Dong Nhe@Lua@42@Xam@2021@Running@1.8 
+2@S407@Van Dong Cao@Da@44@Xanh@2023@Running@2.9 
+
+3@W127@Mua Kho@Da@Nau@2023@
