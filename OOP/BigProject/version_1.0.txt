@@ -1,0 +1,12 @@
+Phiên bản mới nhất:
+1.2.1 - 27/05/2023 - Hủy bỏ điều chỉnh ý số 2 (Trang 8) của phiên bản 1.2, giữ nguyên các cập nhật còn lại.
+
+Các phiên bản cũ:
+1.2 - 27/05/2023 - Cập nhật các nội dung:
+- Yêu cầu 1: bổ sung thông điệp Exception là "Not enough age"
+- Trang 8: điều chỉnh cho đúng đề "Với EWallet nếu Số tiền chuyển + 50 <= số dư tài khoản ..."
+- Bổ sung yêu cầu: Ngoài những thư viện có sẵn trong các file nhận được, sinh viên được phép thêm lớp java.time.Year trong gói java.time để lấy năm hiện tại. Sinh viên không tự ý thêm thư viện khác ngoài những gì được nêu bên trên.
+- Yêu cầu 1: Số tuổi tính dựa theo năm sinh, không xét ngày và tháng.
+- Yêu cầu 4 đến Yêu cầu 9: Thứ tự kết quả của sinh viên có thể khác thứ tự trong file output mẫu nhưng phải đầy đủ các kết quả.
+1.1 - 20/05/2023 - Cập nhật lại các phép toán ở trang 8 và trang 9.
+1.0 - 20/05/2023 - Đề phiên bản đầu tiên.
